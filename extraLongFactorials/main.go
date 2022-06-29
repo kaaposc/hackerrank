@@ -1,3 +1,6 @@
+// Package extraLongFactorials solves Hackerrank challenge "Extra long factorials"[1].
+//
+// [1] https://www.hackerrank.com/challenges/extra-long-factorials/problem
 package extraLongFactorials
 
 import "strconv"
@@ -9,6 +12,7 @@ type Node struct {
 	higher *Node
 }
 
+// multiply node value by num and add carry from previous node
 func (n *Node) multiply(num int32, carry int32) {
 	if num <= 1 {
 		return
@@ -28,6 +32,7 @@ func (n *Node) multiply(num int32, carry int32) {
 	}
 }
 
+// toString returns string representation of the node value
 func (n *Node) toString() string {
 	if n.higher == nil {
 		return strconv.Itoa(int(n.value))
@@ -36,9 +41,10 @@ func (n *Node) toString() string {
 	return n.higher.toString() + strconv.Itoa(int(n.value + maxValue))[1:]
 }
 
+// extraLongFactorials takes number and returns string representation of number's factorial.
 func extraLongFactorials(n int32) string {
 	node := Node{value: n}
-	for n > 1 {
+	for n > 2 {
 		n--
 		node.multiply(n, 0)
 	}

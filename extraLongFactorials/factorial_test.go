@@ -5,13 +5,11 @@ import (
 	"testing"
 )
 
-type testCase struct {
-	in       int32
-	expected string
-}
-
 func TestFactorial(t *testing.T) {
-	var testCases = []testCase{
+	var testCases = []struct {
+		in       int32
+		expected string
+	}{
 		{1, "1"},
 		{2, "2"},
 		{3, "6"},

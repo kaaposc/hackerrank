@@ -1,5 +1,9 @@
+// Package anagram solves Hackerrank challenge "Anagram"[1].
+//
+// [1] https://www.hackerrank.com/challenges/anagram/problem
 package anagram
 
+// anagram takes string argument and returns steps needed to make anagram.
 func anagram(s string) int32 {
 	if len(s)%2 == 1 {
 		return -1
