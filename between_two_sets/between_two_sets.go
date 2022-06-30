@@ -1,7 +1,7 @@
 // Package betweenTwoSets solves Hackerrank challenge "Between Two Sets"[1].
 //
 // [1] https://www.hackerrank.com/challenges/between-two-sets/problem
-package betweenTwoSets
+package betweentwosets
 
 // lowestCommon calculates lowest common denominator of two integers.
 func lowestCommon(a int32, b int32) int32 {
@@ -14,7 +14,7 @@ func lowestCommon(a int32, b int32) int32 {
 		return a
 	}
 
-	var l, r int32 = a, b
+	l, r := a, b
 	for l != r {
 		if l < r {
 			l += a
@@ -50,26 +50,24 @@ func greatestCommon(a int32, b int32) int32 {
 }
 
 // getTotalX counts integers between two sets that are both LCD of a and GCD of b.
-func getTotalX(a []int32, b []int32) int32 {
+func getTotalX(setA []int32, setB []int32) int32 {
 	// if at least one int from set A is greater than any of set B ints return 0
-	for _, i := range a {
-		for _, j := range b {
+	for _, i := range setA {
+		for _, j := range setB {
 			if i > j {
 				return 0
 			}
 		}
 	}
 
-	var (
-		lCA int32 = 1
-		gCB int32 = b[0]
-	)
+	lCA := int32(1)
+	gCB := setB[0]
 
-	for _, n := range a {
+	for _, n := range setA {
 		lCA = lowestCommon(lCA, n)
 	}
 
-	for _, n := range b {
+	for _, n := range setB {
 		gCB = greatestCommon(gCB, n)
 	}
 
@@ -79,7 +77,7 @@ func getTotalX(a []int32, b []int32) int32 {
 
 	var (
 		i int32
-		n int32 = lCA
+		n = lCA
 	)
 
 	for n <= gCB {

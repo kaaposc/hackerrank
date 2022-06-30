@@ -1,4 +1,4 @@
-package betweenTwoSets
+package betweentwosets
 
 import (
 	"fmt"
@@ -6,7 +6,9 @@ import (
 )
 
 func TestLowestCommon(t *testing.T) {
-	var testCases = []struct{ inA, inB, expected int32 }{
+	t.Parallel()
+
+	testCases := []struct{ inA, inB, expected int32 }{
 		{1, 1, 1},
 		{1, 2, 2},
 		{2, 3, 6},
@@ -15,7 +17,10 @@ func TestLowestCommon(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
+		tc := tc
+
 		t.Run(fmt.Sprintf("LCD of %d and %d", tc.inA, tc.inB), func(t *testing.T) {
+			t.Parallel()
 			if n := lowestCommon(tc.inA, tc.inB); n != tc.expected {
 				t.Errorf("LCD of %d and %d is %d, got %d", tc.inA, tc.inB, tc.expected, n)
 			}
@@ -24,7 +29,9 @@ func TestLowestCommon(t *testing.T) {
 }
 
 func TestGreatestCommon(t *testing.T) {
-	var testCases = []struct{ inA, inB, expected int32 }{
+	t.Parallel()
+
+	testCases := []struct{ inA, inB, expected int32 }{
 		{1, 1, 1},
 		{1, 2, 1},
 		{2, 2, 2},
@@ -35,7 +42,10 @@ func TestGreatestCommon(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
+		tc := tc
+
 		t.Run(fmt.Sprintf("GCD of %d and %d", tc.inA, tc.inB), func(t *testing.T) {
+			t.Parallel()
 			if n := greatestCommon(tc.inA, tc.inB); n != tc.expected {
 				t.Errorf("GCD of %d and %d is %d, got %d", tc.inA, tc.inB, tc.expected, n)
 			}
@@ -44,7 +54,9 @@ func TestGreatestCommon(t *testing.T) {
 }
 
 func TestSets(t *testing.T) {
-	var testCases = []struct {
+	t.Parallel()
+
+	testCases := []struct {
 		inA      []int32
 		inB      []int32
 		expected int32
@@ -72,7 +84,10 @@ func TestSets(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
+		tc := tc
+
 		t.Run(fmt.Sprintf("between %v and %v", tc.inA, tc.inB), func(t *testing.T) {
+			t.Parallel()
 			if n := getTotalX(tc.inA, tc.inB); n != tc.expected {
 				t.Errorf("between %v and %v are %d ints, got %d", tc.inA, tc.inB, tc.expected, n)
 			}
