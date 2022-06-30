@@ -12,7 +12,7 @@ type Node struct {
 	higher *Node
 }
 
-// multiply node value by num and add carry from previous node
+// multiply node value by num and add carry from previous node.
 func (n *Node) multiply(num int32, carry int32) {
 	if num <= 1 {
 		return
@@ -21,18 +21,16 @@ func (n *Node) multiply(num int32, carry int32) {
 	n.value = n.value*num + carry
 
 	overflow := n.value / maxValue
-	n.value = n.value % maxValue
+	n.value %= maxValue
 
 	if n.higher != nil {
 		n.higher.multiply(num, overflow)
-	} else {
-		if overflow > 0 {
-			n.higher = &Node{value: overflow}
-		}
+	} else if overflow > 0 {
+		n.higher = &Node{value: overflow}
 	}
 }
 
-// toString returns string representation of the node value
+// toString returns string representation of the node value.
 func (n *Node) toString() string {
 	if n.higher == nil {
 		return strconv.Itoa(int(n.value))
@@ -44,6 +42,7 @@ func (n *Node) toString() string {
 // extraLongFactorials takes number and returns string representation of number's factorial.
 func extraLongFactorials(n int32) string {
 	node := Node{value: n}
+
 	for n > 2 {
 		n--
 		node.multiply(n, 0)
