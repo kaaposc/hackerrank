@@ -1,5 +1,6 @@
 linters:
   enable:
+    - cyclop
     - bodyclose
     - gocognit
     - goconst
