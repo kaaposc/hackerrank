@@ -6,7 +6,9 @@ import (
 )
 
 func TestAnagram(t *testing.T) {
-	var testCases = []struct {
+	t.Parallel()
+
+	testCases := []struct {
 		in       string
 		expected int32
 	}{
@@ -20,7 +22,10 @@ func TestAnagram(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
+		tc := tc
+
 		t.Run(fmt.Sprintf("make anagram from `%s`", tc.in), func(t *testing.T) {
+			t.Parallel()
 			if steps := anagram(tc.in); steps != tc.expected {
 				t.Errorf("`%s` to anagram in %d steps, got %d", tc.in, tc.expected, steps)
 			}

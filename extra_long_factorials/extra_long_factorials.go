@@ -1,7 +1,7 @@
 // Package extraLongFactorials solves Hackerrank challenge "Extra long factorials"[1].
 //
 // [1] https://www.hackerrank.com/challenges/extra-long-factorials/problem
-package extraLongFactorials
+package extralongfactorials
 
 import "strconv"
 
@@ -25,8 +25,12 @@ func (n *Node) multiply(num int32, carry int32) {
 
 	if n.higher != nil {
 		n.higher.multiply(num, overflow)
-	} else if overflow > 0 {
-		n.higher = &Node{value: overflow}
+
+		return
+	}
+
+	if overflow > 0 {
+		n.higher = &Node{value: overflow, higher: nil}
 	}
 }
 
@@ -41,7 +45,7 @@ func (n *Node) toString() string {
 
 // extraLongFactorials takes number and returns string representation of number's factorial.
 func extraLongFactorials(n int32) string {
-	node := Node{value: n}
+	node := Node{value: n, higher: nil}
 
 	for n > 2 {
 		n--
